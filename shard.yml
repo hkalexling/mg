@@ -1,0 +1,19 @@
+name: mg
+version: 0.1.0
+
+authors:
+  - Alex Ling <email@hkalexling.com>
+
+crystal: 0.35.1
+
+license: MIT
+
+dependencies:
+  db:
+    github: crystal-lang/crystal-db
+
+development_dependencies:
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+  ameba:
+    github: crystal-ameba/ameba
