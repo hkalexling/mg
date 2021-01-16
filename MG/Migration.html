@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.34.0">
+<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_name" content="mg">
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+
+  <meta id="repository-name" content="mg">
+  <title>MG::Migration - mg master</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          mg
+        </a>
+      </h1>
+
+      <span class="project-version">
+        master
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="mg/MG" data-name="mg">
+      <a href="../MG.html">MG</a>
+      
+        <ul>
+  
+  <li class=" " data-id="mg/MG/Base" data-name="mg::base">
+      <a href="../MG/Base.html">Base</a>
+      
+    </li>
+  
+  <li class=" " data-id="mg/MG/FilenameError" data-name="mg::filenameerror">
+      <a href="../MG/FilenameError.html">FilenameError</a>
+      
+    </li>
+  
+  <li class=" current" data-id="mg/MG/Migration" data-name="mg::migration">
+      <a href="../MG/Migration.html">Migration</a>
+      
+    </li>
+  
+  <li class=" " data-id="mg/MG/Tags" data-name="mg::tags">
+      <a href="../MG/Tags.html">Tags</a>
+      
+    </li>
+  
+  <li class=" " data-id="mg/MG/Version" data-name="mg::version">
+      <a href="../MG/Version.html">Version</a>
+      
+    </li>
+  
+  <li class=" " data-id="mg/MG/VersionError" data-name="mg::versionerror">
+      <a href="../MG/VersionError.html">VersionError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> MG::Migration
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../MG/Migration.html">MG::Migration</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/hkalexling/mg/blob/19c2f5f0e22473e638871f6eaa041bf1223fdf93/src/mg/migration.cr#L4" target="_blank">
+        mg/migration.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(db:DB::Database,*,tag:String?=nil,version_table=&quot;mg_version&quot;,version_column=&quot;mg_version&quot;)-class-method" class="signature"><strong>.new</strong>(db : DB::Database, *, tag : String? = <span class="n">nil</span>, version_table = <span class="s">&quot;mg_version&quot;</span>, version_column = <span class="s">&quot;mg_version&quot;</span>)</a>
+        
+          <div class="summary"><p>Instantiates a <code><a href="../MG/Migration.html">Migration</a></code> object to migrate a DB.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#migrate(*,to:Int32=-1)-instance-method" class="signature"><strong>#migrate</strong>(*, to : Int32 = <span class="n">-1</span>)</a>
+        
+          <div class="summary"><p>Migrates to a specific version.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#user_version-instance-method" class="signature"><strong>#user_version</strong></a>
+        
+          <div class="summary"><p>Returns the current schema version.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#versions-instance-method" class="signature"><strong>#versions</strong></a>
+        
+          <div class="summary"><p>Lists the available versions for the current migration.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(db:DB::Database,*,tag:String?=nil,version_table=&quot;mg_version&quot;,version_column=&quot;mg_version&quot;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(db : DB::Database, *, tag : String? = <span class="n">nil</span>, version_table = <span class="s">&quot;mg_version&quot;</span>, version_column = <span class="s">&quot;mg_version&quot;</span>)
+
+        <a class="method-permalink" href="#new(db:DB::Database,*,tag:String?=nil,version_table=&quot;mg_version&quot;,version_column=&quot;mg_version&quot;)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Instantiates a <code><a href="../MG/Migration.html">Migration</a></code> object to migrate a DB.</p>
+
+<ul><li><em>tag</em>: See <code><a href="../MG/Tags.html">Tags</a></code>.</li><li><em>version_table</em>: The name of the table to create to store the current schema version</li><li><em>version_column</em>: The column in <em>version_table</em> that stores the current schema version</li></ul>
+
+<p><span class="flag purple">NOTE</span>  In SQLite, <em>version_table</em> and <em>version_column</em> are ignored, because we can use the built-in <code><a href="../MG/Migration.html#user_version-instance-method">#user_version</a></code> pragma to store the version.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/hkalexling/mg/blob/19c2f5f0e22473e638871f6eaa041bf1223fdf93/src/mg/migration.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="migrate(*,to:Int32=-1)-instance-method">
+      <div class="signature">
+        
+        def <strong>migrate</strong>(*, to : Int32 = <span class="n">-1</span>)
+
+        <a class="method-permalink" href="#migrate(*,to:Int32=-1)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Migrates to a specific version. When <code>to</code> is negative, migrates to the
+  latest version available</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/hkalexling/mg/blob/19c2f5f0e22473e638871f6eaa041bf1223fdf93/src/mg/migration.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="user_version-instance-method">
+      <div class="signature">
+        
+        def <strong>user_version</strong>
+
+        <a class="method-permalink" href="#user_version-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the current schema version.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/hkalexling/mg/blob/19c2f5f0e22473e638871f6eaa041bf1223fdf93/src/mg/migration.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="versions-instance-method">
+      <div class="signature">
+        
+        def <strong>versions</strong>
+
+        <a class="method-permalink" href="#versions-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Lists the available versions for the current migration.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/hkalexling/mg/blob/19c2f5f0e22473e638871f6eaa041bf1223fdf93/src/mg/migration.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
