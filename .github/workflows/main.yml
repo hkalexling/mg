@@ -13,7 +13,9 @@ jobs:
       image: crystallang/crystal:0.35.1-alpine
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependencies
+    - name: Install system dependencies
+      run: apk add --no-cache sqlite-dev
+    - name: Install shards
       run: shards install
     - name: Test
       run: crystal spec
