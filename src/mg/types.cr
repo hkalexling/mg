@@ -7,7 +7,8 @@ module MG
 
   # You can tag a subclass of `Base` using this annotatation.
   #
-  # For example, the following version will only be visible in `Migration`s instantiated with the tag "prod" or "dev1"".
+  # For example, the following version will only be visible in `Migration`s
+  #   instantiated with the tag "prod" or "dev1".
   # ```
   # @[MG::Tags("prod", "dev1")]
   # class MyVersion < MG::Base

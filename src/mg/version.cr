@@ -30,11 +30,11 @@ module MG
         end
     end
 
-    def up_statements
+    def up_statements : Array(String)
       split_statements @up
     end
 
-    def down_statements
+    def down_statements : Array(String)
       split_statements @down
     end
   end

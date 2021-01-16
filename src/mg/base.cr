@@ -1,5 +1,6 @@
 module MG
-  # All user defined versions must inherite from this class, and implement the `up` and `down` methods.
+  # All user defined versions must inherite from this class, and implement
+  #   the `up` and `down` methods.
   #
   # ```
   # class CreateUser < MG::Base

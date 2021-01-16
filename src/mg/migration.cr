@@ -5,10 +5,14 @@ module MG
     # Instantiates a `Migration` object to migrate a DB.
     #
     # - *tag*: See `Tags`.
-    # - *version_table*: The name of the table to create to store the current schema version
-    # - *version_column*: The column in *version_table* that stores the current schema version
+    # - *version_table*: The name of the table to create to store the current
+    #   schema version
+    # - *version_column*: The column in *version_table* that stores the
+    #   current schema version
     #
-    # NOTE: In SQLite, *version_table* and *version_column* are ignored, because we can use the built-in `user_version` pragma to store the version.
+    # NOTE: In SQLite, *version_table* and *version_column* are ignored,
+    #   because we can use the built-in *user_version* pragma to store
+    #   the version.
     def initialize(@db : DB::Database, *, @tag : String? = nil,
                    @version_table = "mg_version",
                    @version_column = "mg_version")
@@ -82,7 +86,7 @@ module MG
     end
 
     # Migrates to a specific version. When `to` is negative, migrates to the
-    #   latest version available
+    #   latest version available.
     def migrate(*, to : Int32 = -1)
       # When `to` is negative, use the latest version
       if to < 0
