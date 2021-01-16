@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install system dependencies
-      run: apk add --no-cache sqlite-dev
+      run: apk add --no-cache sqlite-dev rsync
     - name: Install shards
       run: shards install
     - name: Test
