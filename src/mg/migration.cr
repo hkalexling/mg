@@ -60,29 +60,25 @@ module MG
 
     # Returns the current schema version.
     def user_version
-      begin
-        @db.query_one "PRAGMA user_version", as: Int32
-      rescue
-        use_version_table
-        query = <<-SQL
-        SELECT #{@version_column}
-        FROM #{@version_table}
-        LIMIT 1
-        SQL
-        @db.query_one query, as: Int32
-      end
+      @db.query_one "PRAGMA user_version", as: Int32
+    rescue
+      use_version_table
+      query = <<-SQL
+      SELECT #{@version_column}
+      FROM #{@version_table}
+      LIMIT 1
+      SQL
+      @db.query_one query, as: Int32
     end
 
     private def user_version=(ver : Int32)
-      begin
-        @db.exec "PRAGMA user_version = #{ver}"
-      rescue
-        use_version_table
-        @db.exec <<-SQL
-        UPDATE #{@version_table}
-        SET #{@version_column} = #{ver}
-        SQL
-      end
+      @db.exec "PRAGMA user_version = #{ver}"
+    rescue
+      use_version_table
+      @db.exec <<-SQL
+      UPDATE #{@version_table}
+      SET #{@version_column} = #{ver}
+      SQL
     end
 
     # Migrates to a specific version. When `to` is negative, migrates to the
