@@ -15,11 +15,16 @@ module MG
     #   the version.
     def initialize(@db : DB::Database, *, @tag : String? = nil,
                    @version_table = "mg_version",
-                   @version_column = "mg_version")
-      Log.debug { versions.pretty_inspect }
+                   @version_column = "mg_version",
+                   @log : Log? = nil)
+      self.log.debug { versions.pretty_inspect }
       unless versions.uniq(&.version).size == versions.size
         raise VersionError.new "Duplicate versions found"
       end
+    end
+
+    private def log
+      @log || Log.for MG
     end
 
     # Lists the available versions for the current migration.
@@ -91,7 +96,7 @@ module MG
       # When `to` is negative, use the latest version
       if to < 0
         if versions.empty?
-          Log.info { "No version found" }
+          log.info { "No version found" }
           return
         end
         to = versions.last.version
@@ -102,11 +107,11 @@ module MG
                                "the versions list"
       end
 
-      Log.info { "Current version: #{user_version}" }
-      Log.info { "Target version: #{to}" }
+      log.debug { "Current version: #{user_version}" }
+      log.debug { "Target version: #{to}" }
 
       if to == user_version
-        Log.info { "Nothing to be done" }
+        log.debug { "Nothing to be done" }
         return
       end
 
@@ -124,7 +129,7 @@ module MG
                    prev_version(user_version).not_nil!
                  end
 
-        Log.info { "Migrating to #{target.name} (#{target.version})" }
+        log.info { "Migrating to #{target.name} (#{target.version})" }
 
         @db.transaction do |tran|
           conn = tran.connection
@@ -132,14 +137,14 @@ module MG
           statements = is_up ? target.up_statements : cur_ver.down_statements
           statements.each do |query|
             conn.exec query
-            Log.debug { "Executing query:\n#{query}" }
+            log.debug { "Executing query:\n#{query}" }
           end
         end
 
         self.user_version = target.version
       end
 
-      Log.info { "Job done" }
+      log.info { "Job done" }
     end
   end
 end
