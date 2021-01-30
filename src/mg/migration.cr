@@ -17,7 +17,6 @@ module MG
                    @version_table = "mg_version",
                    @version_column = "mg_version",
                    @log : Log? = nil)
-      self.log.debug { versions.pretty_inspect }
       unless versions.uniq(&.version).size == versions.size
         raise VersionError.new "Duplicate versions found"
       end
