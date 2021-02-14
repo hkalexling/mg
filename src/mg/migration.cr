@@ -68,7 +68,7 @@ module MG
 
     # Returns the current schema version.
     def user_version
-      if sqlite?(@db)
+      if sqlite?
         return @db.query_one "PRAGMA user_version", as: Int32
       end
 
@@ -82,7 +82,7 @@ module MG
     end
 
     private def user_version=(ver : Int32)
-      if sqlite?(@db)
+      if sqlite?
         return @db.exec "PRAGMA user_version = #{ver}"
       end
 
@@ -94,8 +94,8 @@ module MG
     end
 
     # Returns true if the connection uses SQLite driver, false otherwise.
-    private def sqlite?(db : DB::Database) : Bool
-      db.driver.class.to_s == "SQLite3::Driver"
+    private def sqlite? : Bool
+      @db.driver.class.to_s == "SQLite3::Driver"
     end
 
     # Migrates to a specific version. When `to` is negative, migrates to the
