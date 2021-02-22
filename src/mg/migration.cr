@@ -98,39 +98,24 @@ module MG
       @db.driver.class.to_s == "SQLite3::Driver"
     end
 
-    # Migrates to a specific version. When `to` is negative, migrates to the
-    #   latest version available.
-    def migrate(*, to : Int32 = -1)
-      # When `to` is negative, use the latest version
-      if to < 0
-        if versions.empty?
-          log.info { "No version found" }
-          return
-        end
-        to = versions.last.version
-      end
-
+    private def check_version(to : Int32)
       unless get_version to
         raise VersionError.new "The target version #{to} does not exist in " \
                                "the versions list"
       end
+    end
 
-      log.debug { "Current version: #{user_version}" }
-      log.debug { "Target version: #{to}" }
-
-      if to == user_version
-        log.debug { "Nothing to be done" }
-        return
-      end
-
+    private def run_migration(to : Int32)
       is_up = to > user_version
 
       until user_version == to
         cur_ver = get_version user_version
+
         unless cur_ver
           raise VersionError.new "The current version #{user_version} does " \
                                  "not exist in the versions list"
         end
+
         target = if is_up
                    next_version(user_version).not_nil!
                  else
@@ -157,7 +142,29 @@ module MG
 
         self.user_version = target.version
       end
+    end
 
+    # Migrates to a specific version. When `to` is negative, migrates to the
+    #   latest version available.
+    def migrate(*, to : Int32 = -1)
+      # When `to` is negative, use the latest version
+      if to < 0
+        if versions.empty?
+          log.info { "No version found" }
+          return
+        end
+        to = versions.last.version
+      end
+
+      log.debug { "Current version: #{user_version}" }
+      log.debug { "Target version: #{to}" }
+
+      if to == user_version
+        log.debug { "Nothing to be done" }
+        return
+      end
+
+      run_migration to
       log.info { "Job done" }
     end
   end
