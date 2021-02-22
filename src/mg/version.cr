@@ -1,14 +1,24 @@
 module MG
   struct Version
-    getter name : String
     getter version : Int32
     getter tags : Array(String)
 
+    @mg : Base | String
     @up : String
     @down : String
 
     # :nodoc:
-    def initialize(@name, @version, @up, @down, @tags = [] of String)
+    def initialize(@mg, @version, @up, @down, @tags = [] of String)
+    end
+
+    # Returns version name.
+    def name : String
+      @mg.to_s
+    end
+
+    # Returns current migration instance or name.
+    def mg : Base | String
+      @mg
     end
 
     private def split_statements(str : String) : Array(String)

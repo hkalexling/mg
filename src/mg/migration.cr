@@ -147,6 +147,12 @@ module MG
             conn.exec query
             log.debug { "Executing query:\n#{query}" }
           end
+
+          if is_up && target.mg.is_a?(Base)
+            target.mg.as(Base).after_up(conn)
+          elsif !is_up && cur_ver.mg.is_a?(Base)
+            cur_ver.mg.as(Base).after_down(conn)
+          end
         end
 
         self.user_version = target.version
