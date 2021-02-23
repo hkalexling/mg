@@ -2,8 +2,8 @@ module MG
   struct Version
     getter version : Int32
     getter tags : Array(String)
+    getter mg : Base | String
 
-    @mg : Base | String
     @up : String
     @down : String
 
@@ -14,11 +14,6 @@ module MG
     # Returns version name.
     def name : String
       @mg.to_s
-    end
-
-    # Returns current migration instance or name.
-    def mg : Base | String
-      @mg
     end
 
     private def split_statements(str : String) : Array(String)
