@@ -1,0 +1,26 @@
+name: Docs
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    container:
+      image: crystallang/crystal:0.35.1-alpine
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install system dependencies
+      run: apk add --no-cache sqlite-dev rsync
+    - name: Install shards
+      run: shards install
+    - name: Generate docs
+      run: crystal docs
+    - name: Deploy docs
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: docs
+        CLEAN: true
