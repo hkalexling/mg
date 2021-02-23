@@ -28,6 +28,14 @@ module MG
     # :nodoc:
     abstract def down : String
 
+    # Optional lifecycle method.
+    # Overwrite this method to execute Crystal code after running the `up` query.
+    def after_up(db : DB::Connection); end
+
+    # Optional lifecycle method.
+    # Overwrite this method to execute Crystal code after running the `down` query.
+    def after_down(db : DB::Connection); end
+
     macro inherited
       def version : Int32
         ver = -1
@@ -45,6 +53,11 @@ module MG
       end
     end
 
+    # :nodoc:
+    def to_s
+      self.class.name
+    end
+
     # Lists all versions available. The versions are sorted by version number.
     def self.versions : Array(Version)
       versions = [] of Version
@@ -57,7 +70,7 @@ module MG
             tags << {{tag}}
           {% end %}
         {% end %}
-        versions << Version.new "#{{{sc}}}", mg.version, mg.up, mg.down, tags
+        versions << Version.new mg, mg.version, mg.up, mg.down, tags
       {% end %}
       versions.sort_by &.version
     end

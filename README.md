@@ -36,6 +36,16 @@ class CreateUser < MG::Base
     DROP TABLE users;
     SQL
   end
+
+  # Optional lifecycle method to be executed after the `up` query.
+  def after_up
+    puts "Table users created"
+  end
+
+  # Optional lifecycle method to be executed after the `down` query.
+  def after_down
+    puts "Table users dropped"
+  end
 end
 ```
 
