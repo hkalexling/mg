@@ -2,6 +2,8 @@ module MG
   struct Version
     getter version : Int32
     getter tags : Array(String)
+
+    # :nodoc:
     getter mg : Base | String
 
     @up : String
@@ -11,7 +13,7 @@ module MG
     def initialize(@mg, @version, @up, @down, @tags = [] of String)
     end
 
-    # Returns version name.
+    # Returns a human-readable version name.
     def name : String
       @mg.to_s
     end

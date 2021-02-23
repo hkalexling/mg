@@ -28,8 +28,12 @@ module MG
     # :nodoc:
     abstract def down : String
 
+    # Optional lifecycle method.
+    # Overwrite this method to execute Crystal code after running the `up` query.
     def after_up(db : DB::Connection); end
 
+    # Optional lifecycle method.
+    # Overwrite this method to execute Crystal code after running the `down` query.
     def after_down(db : DB::Connection); end
 
     macro inherited
@@ -49,6 +53,7 @@ module MG
       end
     end
 
+    # :nodoc:
     def to_s
       self.class.name
     end
