@@ -38,12 +38,12 @@ class CreateUser < MG::Base
   end
 
   # Optional lifecycle method to be executed after the `up` query.
-  def after_up
+  def after_up(conn : DB::Connection)
     puts "Table users created"
   end
 
   # Optional lifecycle method to be executed after the `down` query.
-  def after_down
+  def after_down(conn : DB::Connection)
     puts "Table users dropped"
   end
 end
