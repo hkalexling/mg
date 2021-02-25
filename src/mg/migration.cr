@@ -38,15 +38,15 @@ module MG
     end
 
     private def get_version(ver : Int32)
-      versions.find { |v| v.version == ver }
+      versions.find &.version.== ver
     end
 
     private def next_version(ver : Int32)
-      versions.find { |v| v.version > ver }
+      versions.find &.version.> ver
     end
 
     private def prev_version(ver : Int32)
-      versions.reverse.find { |v| v.version < ver }
+      versions.reverse.find &.version.< ver
     end
 
     # :nodoc:

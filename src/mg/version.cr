@@ -29,12 +29,8 @@ module MG
           end
           acc
         end
-        .map do |group|
-          group.join "\n"
-        end
-        .reject do |query|
-          query.empty?
-        end
+        .map(&.join "\n")
+        .reject &.empty?
     end
 
     def up_statements : Array(String)
