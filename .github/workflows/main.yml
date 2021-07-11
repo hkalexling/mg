@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     container:
-      image: crystallang/crystal:0.35.1-alpine
+      image: crystallang/crystal:1.0.0-alpine
     steps:
     - uses: actions/checkout@v2
     - name: Install system dependencies
